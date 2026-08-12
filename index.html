@@ -321,7 +321,7 @@
       html { overflow-x: hidden; }
       body { overflow-x: hidden; }
       .wrap { width: min(100% - 1.25rem, 34rem); }
-      .nav-wrap { position: relative; top: auto; left: auto; transform: none; width: calc(100% - .8rem); margin: .55rem auto 0; }
+      .nav-wrap { position: static !important; inset: auto !important; transform: none !important; width: calc(100% - .8rem); margin: .55rem auto 0; }
       .nav { flex-wrap: wrap; gap: .5rem .7rem; padding: .65rem .72rem; border-radius: 16px; }
       .brand { min-width: 0; flex: 1 1 auto; font-size: .72rem; }
       .brand-mark { width: 1.75rem; height: 1.75rem; font-size: .72rem; }
@@ -399,9 +399,9 @@
       section::before, body::before, body::after { animation: none !important; }
       .hero-orbit, .float-tag { display: none; }
       #dor .pain-layout { display: flex; flex-direction: column; gap: 0; }
-      #dor .big-quote { display: flex; flex-direction: column; align-items: stretch; gap: 1.25rem; min-height: 0; margin: 0 0 3.5rem; padding: 0 0 2.5rem; }
+      #dor .big-quote { display: flex; flex-direction: column; align-items: stretch; gap: 1.25rem; min-height: 0; margin: 0 0 5.5rem !important; padding: 0 0 2.5rem; }
       #dor .big-quote span, #dor .big-quote small { display: block; max-width: none; margin: 0; }
-      #dor .pain-list { flex: none; clear: both; }
+      #dor .pain-list { flex: none; clear: both; margin-top: 0 !important; }
 
       /* A navegação mobile ocupa duas linhas; a primeira seção precisa respeitar essa altura. */
       #dor { padding-top: 5rem; }
