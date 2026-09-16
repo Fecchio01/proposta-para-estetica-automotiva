@@ -16,9 +16,12 @@ test('proposal loads its dedicated motion layer', () => {
 
 test('proposal motion is transform based and keeps reduced-motion support', () => {
   assert.match(css, /transform:\s*translate3d/);
+  assert.match(css, /aspect-ratio:\s*1100\s*\/\s*650/);
   assert.match(css, /prefers-reduced-motion/);
   assert.doesNotMatch(css, /transition:[^;]*(?:background|box-shadow|color)/);
   assert.match(js, /IntersectionObserver/);
+  assert.match(js, /ResizeObserver/);
+  assert.match(js, /preview-scale/);
   assert.match(js, /motion-stagger/);
 });
 

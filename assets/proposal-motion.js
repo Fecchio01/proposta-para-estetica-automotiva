@@ -22,6 +22,20 @@
     element.classList.add('motion-target');
   });
 
+  const previewViewports = document.querySelectorAll('.identity-preview-viewport');
+  const resizePreview = (viewport) => {
+    const scale = viewport.clientWidth / 1100;
+    viewport.style.setProperty('--preview-scale', Math.max(scale, 0.01).toFixed(4));
+  };
+
+  previewViewports.forEach((viewport) => {
+    resizePreview(viewport);
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(() => resizePreview(viewport));
+      observer.observe(viewport);
+    }
+  });
+
   const staggerGroups = [
     '.feature-stack',
     '.employee-capabilities',

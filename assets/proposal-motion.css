@@ -4,6 +4,17 @@
   --proposal-motion-ease: cubic-bezier(.22, .7, .18, 1);
 }
 
+/* The preview always fills the card while preserving the real desktop canvas. */
+.identity-preview-viewport {
+  height: auto !important;
+  aspect-ratio: 1100 / 650;
+  background: #fff;
+}
+
+.identity-preview-card iframe {
+  transform: scale(var(--preview-scale, .34));
+}
+
 .motion-target {
   transform: translate3d(0, 0, 0);
   transition: transform 460ms var(--proposal-motion-ease);
