@@ -19,6 +19,8 @@ test('proposal motion is transform based and keeps reduced-motion support', () =
   assert.match(css, /transform:\s*translate3d/);
   assert.match(css, /aspect-ratio:\s*1100\s*\/\s*650/);
   assert.match(css, /proposal-ambient-drift/);
+  assert.match(css, /section::before[\s\S]*display:\s*none/);
+  assert.match(css, /\.hero::after[\s\S]*display:\s*none/);
   assert.match(css, /prefers-reduced-motion/);
   assert.doesNotMatch(css, /transition:[^;]*(?:background|box-shadow|color)/);
   assert.match(js, /IntersectionObserver/);
