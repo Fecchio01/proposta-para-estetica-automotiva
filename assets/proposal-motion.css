@@ -1,0 +1,52 @@
+/* Motion layer for the proposal site.
+   Keep movement predictable: transform and opacity only, no animated color/shadow. */
+:root {
+  --proposal-motion-ease: cubic-bezier(.22, .7, .18, 1);
+}
+
+.motion-target {
+  transform: translate3d(0, 0, 0);
+  transition: transform 460ms var(--proposal-motion-ease);
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-target:hover {
+    transform: translate3d(0, -5px, 0);
+  }
+
+  .motion-target:active {
+    transform: translate3d(0, -1px, 0) scale(.998);
+  }
+}
+
+.motion-target:focus-within {
+  transform: translate3d(0, -2px, 0);
+}
+
+.motion-stagger > .motion-item {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition: opacity 420ms var(--proposal-motion-ease), transform 420ms var(--proposal-motion-ease);
+  transition-delay: calc(var(--motion-index, 0) * 70ms);
+}
+
+.motion-stagger.is-motion-visible > .motion-item {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-target,
+  .motion-target:hover,
+  .motion-target:active,
+  .motion-target:focus-within,
+  .motion-stagger > .motion-item,
+  .motion-stagger.is-motion-visible > .motion-item {
+    transform: none;
+    transition: none;
+    animation: none !important;
+    opacity: 1;
+    will-change: auto;
+  }
+}
