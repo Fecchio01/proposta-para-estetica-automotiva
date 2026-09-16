@@ -36,6 +36,27 @@
     }
   });
 
+  const dorSection = document.querySelector('#dor');
+  if (dorSection && !reduceMotion.matches) {
+    let orbFrame = 0;
+    const updateDorOrb = () => {
+      if (orbFrame) return;
+      orbFrame = requestAnimationFrame(() => {
+        const bounds = dorSection.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+        const orbWidth = Math.max(1, bounds.width * 0.23);
+        const shift = (0.2 - (progress * 0.42)) * orbWidth;
+        dorSection.style.setProperty('--dor-orb-shift', `${shift.toFixed(1)}px`);
+        dorSection.style.setProperty('--dor-orb-scale', (0.88 + (progress * 0.16)).toFixed(3));
+        orbFrame = 0;
+      });
+    };
+
+    window.addEventListener('scroll', updateDorOrb, { passive: true });
+    window.addEventListener('resize', updateDorOrb, { passive: true });
+    updateDorOrb();
+  }
+
   const staggerGroups = [
     '.feature-stack',
     '.employee-capabilities',
