@@ -35,6 +35,14 @@ test('proposal motion is transform based and keeps reduced-motion support', () =
   assert.match(js, /motion-stagger/);
 });
 
+test('proposal keeps atmosphere local to each section', () => {
+  assert.match(css, /section:not\(\.hero\)::before/);
+  assert.match(css, /section-ambient-drift/);
+  assert.match(css, /#dor::before[\s\S]*radial-gradient/);
+  assert.match(css, /isolation:\s*isolate/);
+  assert.doesNotMatch(css, /background-position/);
+});
+
 test('proposal motion targets presentation sections without changing content', () => {
   assert.match(js, /\.real-system-frame/);
   assert.match(js, /\.identity-preview-card/);
