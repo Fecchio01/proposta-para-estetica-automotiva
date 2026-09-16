@@ -4,6 +4,52 @@
   --proposal-motion-ease: cubic-bezier(.22, .7, .18, 1);
 }
 
+.proposal-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: .72;
+}
+
+.proposal-ambient::before,
+.proposal-ambient::after {
+  content: '';
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: .13;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.proposal-ambient::before {
+  top: -12rem;
+  right: -8rem;
+  background: #4fd1ad;
+  animation: proposal-ambient-drift-a 19s var(--proposal-motion-ease) infinite alternate;
+}
+
+.proposal-ambient::after {
+  bottom: -16rem;
+  left: 22%;
+  background: #d6a854;
+  animation: proposal-ambient-drift-b 23s var(--proposal-motion-ease) infinite alternate;
+}
+
+@keyframes proposal-ambient-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-8vw, 7vh, 0) scale(1.16); }
+}
+
+@keyframes proposal-ambient-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.05); }
+  to { transform: translate3d(9vw, -6vh, 0) scale(.88); }
+}
+
 /* The preview always fills the card while preserving the real desktop canvas. */
 .identity-preview-viewport {
   height: auto !important;
@@ -48,6 +94,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .proposal-ambient::before,
+  .proposal-ambient::after {
+    animation: none;
+  }
+
   .motion-target,
   .motion-target:hover,
   .motion-target:active,
