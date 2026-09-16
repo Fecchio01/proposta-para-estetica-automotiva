@@ -315,3 +315,47 @@ section:not(.hero)::before {
     opacity: .48;
   }
 }
+
+/* The atmosphere belongs to the whole proposal, not to isolated chapters.
+   This prevents a hard horizontal restart when one section meets the next. */
+section:not(.hero)::before,
+#dor::after {
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+}
+
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 10% 12%, rgba(93, 228, 207, .16), transparent 31rem),
+    radial-gradient(ellipse at 90% 28%, rgba(118, 168, 143, .12), transparent 34rem),
+    radial-gradient(ellipse at 18% 72%, rgba(214, 168, 84, .1), transparent 29rem),
+    radial-gradient(ellipse at 82% 88%, rgba(93, 228, 207, .09), transparent 36rem);
+  opacity: .64;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: transform, opacity;
+  animation: continuous-atmosphere 30s var(--proposal-motion-ease) infinite alternate !important;
+}
+
+@keyframes continuous-atmosphere {
+  from {
+    transform: translate3d(-1.4%, -.5%, 0) scale(1);
+    opacity: .52;
+  }
+  to {
+    transform: translate3d(1.4%, 1%, 0) scale(1.035);
+    opacity: .72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none !important;
+    transform: none;
+    opacity: .64;
+  }
+}

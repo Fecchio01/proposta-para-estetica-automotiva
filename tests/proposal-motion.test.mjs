@@ -35,11 +35,11 @@ test('proposal motion is transform based and keeps reduced-motion support', () =
   assert.match(js, /motion-stagger/);
 });
 
-test('proposal keeps atmosphere local to each section', () => {
-  assert.match(css, /section:not\(\.hero\)::before/);
-  assert.match(css, /section-ambient-drift/);
-  assert.match(css, /#dor::before[\s\S]*radial-gradient/);
-  assert.match(css, /isolation:\s*isolate/);
+test('proposal keeps one continuous atmosphere across section boundaries', () => {
+  assert.match(css, /body::after[\s\S]*continuous-atmosphere/);
+  assert.match(css, /section:not\(\.hero\)::before[\s\S]*display:\s*none/);
+  assert.match(css, /#dor::after[\s\S]*display:\s*none/);
+  assert.match(css, /continuous-atmosphere/);
   assert.doesNotMatch(css, /background-position/);
 });
 
